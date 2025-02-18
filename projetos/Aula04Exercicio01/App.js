@@ -1,112 +1,89 @@
-import React, { useState } from 'react'; 
+import React, { useState } from 'react';
+import { View, Text, Image, TextInput, Button, StyleSheet } from 'react-native';
+import NativeLogo from './assets/NativeLogo.png';
 
+const App = () => {
+  {/* Cria um estado chamado 'nome' com um valor inicial de string vazia. */}
+  {/* 'setNome' é a função que atualiza o estado 'nome'. */}
+  const [nome, setNome] = useState('');
 
-import { View, Text, Image, TextInput, Button, StyleSheet } from 'react-native'; 
+  {/* Cria um estado chamado 'mensagem' com um valor inicial de string vazia. */}
+  {/* 'setMensagem' é a função que atualiza o estado 'mensagem'. */}
+  const [mensagem, setMensagem] = useState('');
 
-
-const App = () => { 
-  
-
-  const [nome, setNome] = useState(''); 
-  // Cria um estado chamado 'nome'. 
-  // 'setNome' é a função para atualizar o valor de 'nome'.
-
-  const [mensagem, setMensagem] = useState(''); 
-  // Cria um estado chamado 'mensagem'. 
-  // 'setMensagem' é a função para atualizar o valor de 'mensagem'.
-
-  const lidarComClique = () => { 
-    // Função chamada quando o botão for clicado.
-    
-    if (nome) { 
-      // Verifica há um nome.
-      setMensagem(`Olá, ${nome}!`); 
-      // Se o nome foi digitado, exibe uma mensagem com o nome.
-    } else { 
-      setMensagem('Por favor, digite o seu nome.'); 
-      //Não houver um nome, exibe uma mensagem pedindo para digitar.
+  {/* Função chamada quando o botão for pressionado. */}
+  const lidarComClique = () => {
+    if (nome) {
+      {/* Se o nome foi digitado, exibe uma mensagem personalizada. */}
+      setMensagem(`Olá, ${nome}!`);
+    } else {
+      {/* Se nenhum nome foi digitado, exibe uma mensagem de aviso. */}
+      setMensagem('Por favor, digite o seu nome.');
     }
   };
 
   return (
-    <View style={styles.container}> 
-    
-    
+    <View style={styles.container}>
+      
       <Image 
-        source={{ uri: 'https://reactnative.dev/img/react_native_logo.png' }} 
-       
-        style={styles.logo} 
-        // Aplica o estilo definido em 'styles.logo'.
+        source={NativeLogo} style={styles.logo}  
       />
       
-      <Text style={styles.titulo}>Exemplo Interativo</Text> 
-      // Exibe o título "Exemplo Interativo" com o estilo definido em 'styles.titulo'.
-      
+     
+      <Text style={styles.titulo}>Exemplo Interativo</Text>
+
+     
       <TextInput 
-        style={styles.input} 
-        // Exibe um campo de entrada de texto'.
-        
+        style={styles.input}
         placeholder="Digite seu nome" 
-        // Exibe o texto "Digite seu nome" dentro do campo de entrada.
-        
         onChangeText={setNome} 
-        // A função setNome é chamada toda vez que o texto no campo de entrada mudar, atualizando o estado 'nome'.
-        
         value={nome} 
-        //o campo sempre exibe o valor atual de 'nome'.
       />
 
-      <Button title="Enviar" onPress={lidarComClique} /> 
-      // Exibe um botão com o título "Enviar" e chama a função 'lidarComClique' quando pressionado.
-
-      {mensagem ? <Text style={styles.mensagem}>{mensagem}</Text> : null} 
-      {/* exibe mensagem se não for uma string vazia, a mensagem é exibida dentro da tag text */}
       
+      <Button title="Enviar" onPress={lidarComClique} />
+
+      
+      {mensagem ? <Text style={styles.mensagem}>{mensagem}</Text> : null}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
- 
-
-  container: { 
+  container: {
     flex: 1, 
     justifyContent: 'center', 
     alignItems: 'center', 
     padding: 20, 
-   
   },
 
-  logo: { 
+  logo: {
     width: 150, 
     height: 150, 
     marginBottom: 20, 
-    
   },
 
-  titulo: { 
+  titulo: {
     fontSize: 24, 
     fontWeight: 'bold', 
     marginBottom: 20, 
-    
   },
 
-  input: { 
+  input: {
     width: '100%', 
     height: 40, 
     borderColor: 'gray', 
     borderWidth: 1, 
     marginBottom: 20, 
     paddingHorizontal: 10, 
-    
   },
 
-  mensagem: { 
+  mensagem: {
     marginTop: 20, 
     fontSize: 16, 
-    
   },
 });
 
-export default App; 
+export default App;
+
 
