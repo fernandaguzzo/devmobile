@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
+
 import { View, Text, Image, TextInput, Button, TouchableOpacity, ScrollView, FlatList, SectionList, ActivityIndicator, StyleSheet } from 'react-native';
 import NativeLogo from './assets/NativeLogo.png';
 
 const App = () => {
   const [text, setText] = useState('');
+  const [imageWidth, setImageWidth] = useState(200);
   const [isLoading, setIsLoading] = useState(false);
-
-  const handlePress = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      alert('Botão pressionado!');
-    }, 2000);
-  };
+  const [sliderValue, setSliderValue] = useState(0);
 
   const data = [
     { id: 1, name: 'Item 1' },
@@ -21,56 +16,60 @@ const App = () => {
   ];
 
   const sections = [
-    {
-      title: 'Seção 1',
-      data: [
-        { id: 1, name: 'Item 1' },
-        { id: 2, name: 'Item 2' },
-      ],
-    },
-    {
-      title: 'Seção 2',
-      data: [
-        { id: 3, name: 'Item 3' },
-        { id: 4, name: 'Item 4' },
-      ],
-    },
+    { title: 'Section 1', data: [{ id: 1, name: 'Item 1' }, { id: 2, name: 'Item 2' }] },
+    { title: 'Section 2', data: [{ id: 3, name: 'Item 3' }] },
   ];
+
+  const handlePress = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      alert('Button pressed!');
+      setIsLoading(false);
+    }, 2000);
+  };
 
   return (
     <ScrollView style={styles.container}>
       <View style={styles.view}>
-        <Text style={styles.text}>Olá, mundo!</Text>
-
+        <Text style={styles.text}>Hello React Native!</Text>
         <Image
           source={NativeLogo} style={styles.logo}
+          style={[styles.logo, { width: imageWidth }]}
         />
         <TextInput
           style={styles.textInput}
-          placeholder="Digite algo"
+          placeholder="Enter text"
           value={text}
           onChangeText={setText}
         />
-        <Button title="Clique aqui" onPress={handlePress} />
-        <TouchableOpacity style={styles.touchableOpacity} onPress={handlePress}>
-          <Text style={styles.touchableOpacityText}>Toque aqui</Text>
+        <Button title="Press me" onPress={handlePress} />
+        <TouchableOpacity style={styles.touchableOpacity} onPress={() => setImageWidth(imageWidth + 50)}>
+          <Text style={styles.touchableOpacityText}>Increase Image Width</Text>
         </TouchableOpacity>
-        <ActivityIndicator animating={isLoading} />
+        <ActivityIndicator size="large" color="#0000ff" animating={isLoading} />
+       
+        {/* 
+          <Slider
+        minimumValue={0}
+         maximumValue={100}
+        value={sliderValue}
+         onValueChange={setSliderValue}
+         />
+        */}
+        
+        <Text>Slider Value: {sliderValue.toFixed(0)}</Text>
       </View>
 
       <FlatList
         data={data}
-        renderItem={({ item }) => <Text>{item.name}</Text>}
         keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => <Text>{item.name}</Text>}
       />
-
       <SectionList
         sections={sections}
-        renderItem={({ item }) => <Text>{item.name}</Text>}
-        renderSectionHeader={({ section: { title } }) => (
-          <Text style={styles.sectionHeader}>{title}</Text>
-        )}
         keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => <Text>{item.name}</Text>}
+        renderSectionHeader={({ section: { title } }) => <Text style={styles.sectionHeader}>{title}</Text>}
       />
     </ScrollView>
   );
@@ -88,9 +87,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 10,
   },
-    logo: {
-    width: 100,
-    height: 100,
+  logo: {
+    height: 200,
+    resizeMode: 'contain',
     marginBottom: 10,
   },
   textInput: {
@@ -101,7 +100,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   touchableOpacity: {
-    backgroundColor: 'blue',
+    backgroundColor: 'lightblue',
     padding: 10,
     borderRadius: 5,
     marginBottom: 10,
@@ -119,3 +118,4 @@ const styles = StyleSheet.create({
 });
 
 export default App;
+
