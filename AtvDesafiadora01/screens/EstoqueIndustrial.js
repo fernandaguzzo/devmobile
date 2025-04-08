@@ -30,10 +30,10 @@ const EstoqueIndustrialScreen = ({ navigation }) => {
   const ItemLista = ({ item }) => (
     <View style={styles.item}>
       <View style={styles.infoContainer}>
-        <Text style={styles.nome}>{item.nome}</Text>
-        <Text>Código: {item.codigo}</Text>
-        <Text>Quantidade: {item.quantidade}</Text>
-        <Text>Localização: {item.localizacao}</Text>
+        <Text style={styles.itemName}>{item.nome}</Text>
+        <Text style={styles.itemCode}>Código: {item.codigo}</Text>
+        <Text style={styles.itemQuantity}>Quantidade: {item.quantidade}</Text>
+        <Text style={styles.itemLocation}>Localização: {item.localizacao}</Text>
       </View>
       <TouchableOpacity
         style={styles.botaoEditar}
@@ -56,100 +56,99 @@ const EstoqueIndustrialScreen = ({ navigation }) => {
         contentContainerStyle={styles.lista}
       />
       
-      <Button
-        title="Adicionar Nova Peça"
+      <TouchableOpacity
+        style={styles.addButton}
         onPress={() => navigation.navigate('CadastroItem', { adicionarItem })}
-        color="#2c3e50"
-      />
+      >
+        <Text style={styles.buttonText}>+</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#F8F9FA',
-      paddingHorizontal: 16,
-    },
-    header: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      marginBottom: 24,
-      paddingVertical: 16,
-      backgroundColor: '#FFFFFF',
-      borderRadius: 12,
-      elevation: 3,
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 6,
-      paddingHorizontal: 16,
-    },
-    headerTitle: {
-      fontSize: 24,
-      fontWeight: '700',
-      color: '#2D3436',
-      letterSpacing: 0.5,
-    },
-    item: {
-      backgroundColor: '#FFFFFF',
-      borderRadius: 12,
-      padding: 16,
-      marginBottom: 12,
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      elevation: 2,
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 1 },
-      shadowOpacity: 0.1,
-      shadowRadius: 4,
-    },
-    itemContent: {
-      flex: 1,
-    },
-    itemName: {
-      fontSize: 16,
-      fontWeight: '600',
-      color: '#2D3436',
-      marginBottom: 4,
-    },
-    itemCode: {
-      fontSize: 12,
-      color: '#636E72',
-      marginBottom: 4,
-    },
-    itemQuantity: {
-      fontSize: 14,
-      fontWeight: '500',
-      color: '#00B894',
-    },
-    editButton: {
-      backgroundColor: '#FDCB6E',
-      paddingVertical: 8,
-      paddingHorizontal: 12,
-      borderRadius: 8,
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
-    addButton: {
-      backgroundColor: '#0984E3',
-      borderRadius: 50,
-      width: 56,
-      height: 56,
-      justifyContent: 'center',
-      alignItems: 'center',
-      position: 'absolute',
-      bottom: 24,
-      right: 24,
-      elevation: 4,
-    },
-    buttonText: {
-      color: '#FFFFFF',
-      fontWeight: '600',
-      fontSize: 14,
-    },
-  });
+  container: {
+    flex: 1,
+    backgroundColor: '#F8F9FA',
+    paddingHorizontal: 16,
+    paddingTop: 20,
+  },
+  lista: {
+    paddingBottom: 80, // Espaço para o botão flutuante
+  },
+  item: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+  },
+  infoContainer: {
+    flex: 1,
+    marginRight: 12,
+  },
+  itemName: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#2D3436',
+    marginBottom: 6,
+  },
+  itemCode: {
+    fontSize: 14,
+    color: '#636E72',
+    marginBottom: 4,
+  },
+  itemQuantity: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#00B894',
+    marginBottom: 4,
+  },
+  itemLocation: {
+    fontSize: 14,
+    color: '#636E72',
+  },
+  botaoEditar: {
+    backgroundColor: '#FDCB6E',
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textoBotao: {
+    color: '#2D3436',
+    fontWeight: '500',
+    fontSize: 14,
+  },
+  addButton: {
+    backgroundColor: '#0984E3',
+    borderRadius: 50,
+    width: 56,
+    height: 56,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    bottom: 24,
+    right: 24,
+    elevation: 4,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+  },
+  buttonText: {
+    color: '#FFFFFF',
+    fontSize: 32,
+    fontWeight: '700',
+  },
+});
 
 export default EstoqueIndustrialScreen;

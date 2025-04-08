@@ -2,13 +2,19 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import EstoqueIndustrialScreen from '../screens/EstoqueIndustrial';
 import TelaCadastroItem from '../screens/TelaCadastroItem';
 import TelaAjusteQuantidade from '../screens/TelaAjusteQuantidade';
-import Login from '../screens/Login'; // Remover o ponto e vírgula extra aqui
+import Login from '../screens/Login';
+import RecuperarSenhaScreen from '../screens/RecuperarSenha'; 
 
 const Stack = createNativeStackNavigator();
 
 const NavegacaoPrincipal = () => {
   return (
-    <Stack.Navigator initialRouteName="Estoque">
+    <Stack.Navigator initialRouteName="Login">
+      <Stack.Screen 
+        name="Login" 
+        component={Login}
+        options={{ title: 'Login' }}
+      />
       <Stack.Screen 
         name="Estoque" 
         component={EstoqueIndustrialScreen}
@@ -25,12 +31,14 @@ const NavegacaoPrincipal = () => {
         options={{ title: 'Editar Quantidade' }}
       />
       <Stack.Screen 
-        name="Login" 
-        component={Login}
-        options={{ title: 'Login' }}
+        name="RecuperarSenha" 
+        component={RecuperarSenhaScreen}
+        options={{ title: 'Recuperar Senha' }}
       />
     </Stack.Navigator>
   );
 };
 
 export default NavegacaoPrincipal;
+
+
